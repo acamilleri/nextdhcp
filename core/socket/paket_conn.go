@@ -9,6 +9,7 @@ import (
 
 	"github.com/insomniacslk/dhcp/dhcpv4"
 	"github.com/mdlayher/raw"
+	"github.com/mdlayher/ethernet"
 	"github.com/nextdhcp/nextdhcp/core/log"
 	interfaces "github.com/nextdhcp/nextdhcp/core/utils/iface"
 )
@@ -17,7 +18,7 @@ var (
 	rawListenPacket = func(iface *net.Interface) (net.PacketConn, error) {
 		// TODO(ppacher): use the BPF filter support to drop not-DHCP related
 		// packets
-		return raw.ListenPacket(iface, syscall.ETH_P_IP, nil)
+		return raw.ListenPacket(iface, uint16(ethernet.EtherTypeIPv4), nil)
 	}
 
 	udpListenPacket = func(ip net.IP, port int) (net.PacketConn, error) {
