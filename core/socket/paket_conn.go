@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net"
 	"sync"
-	"syscall"
 	"time"
 
 	"github.com/insomniacslk/dhcp/dhcpv4"
